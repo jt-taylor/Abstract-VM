@@ -1,0 +1,3 @@
+[submodule "lexertk"]
+	path = lexertk
+	url = https://github.com/ArashPartow/lexertk.git
