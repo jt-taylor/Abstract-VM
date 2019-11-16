@@ -35,7 +35,12 @@ int		main(void)
 			std::cout << "fail\n";
 		else
 		{
-			lexertk::helper::dump(gen);
+			for (std::size_t i = 0; i < gen.size(); i++)
+			{
+				lexertk::token t = gen[i];
+				printf("Token pos[%d] == type(%s) value == %s\n", static_cast<unsigned int>(i), t.to_str(t.type).c_str(), t.value.c_str());
+			}
+			//lexertk::helper::dump(gen);
 			std::cout << std::endl;
 		}
 	}

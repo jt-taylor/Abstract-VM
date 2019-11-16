@@ -2,6 +2,7 @@
 #include <string>
 #include <fstream>
 #include <vector>
+#include "lexertk.hpp"
 #include "our_exceptions.hpp"
 
 static void	read_from_cin_to_vector(std::vector<std::string> & v)
@@ -9,6 +10,9 @@ static void	read_from_cin_to_vector(std::vector<std::string> & v)
 	std::string tmp;
 	while (std::getline(std::cin, tmp))
 		v.push_back(tmp);
+	auto t = v.end();
+	if (t->compare(0, 2, ";;") != 0)
+		throw (ex_NoExitInstruction());
 }
 
 static void	read_file_in_to_vector(std::string file_path, std::vector<std::string> & v)
@@ -30,21 +34,35 @@ static void	read_file_in_to_vector(std::string file_path, std::vector<std::strin
 
 static int	do_the_vm(std::vector<std::string> & v)
 {
+	lexertk::generator	gen;
 	auto iter = v.begin();
 	while (iter != v.end())
 	{
 		std::cout << *iter << std::endl;
-		
+		if (!gen.process(iter->c_str()))
+		{
+			std::cout << "Lexer parser error" << std::endl;
+			throw (ex_UnknownInstruction(*iter));
+		}
+		else
+		{
+			//lexertk::helper::dump(gen);
+			//std::cout << "\n";
+			;
+		}
+		if (iter->at(0) == ';')
+		{
+			line_number++;
+			iter++;
+			continue ;
+		}
 		if (0)//check valid command *i
 			break;
 		line_number++;
 		iter++;
 	}
-	//this is the last command passed in , having this here
-	//means we lose interactivity with the input stream and
-	//have to grab the entire command set before eval'ing any of them
-	if (strcmp(iter->c_str(),";;") != 0)
-		throw (ex_NoExitInstruction());
+	//if (strcmp(iter->c_str(),";;") != 0)
+	//	throw (ex_NoExitInstruction());
 	return (0);
 }
 

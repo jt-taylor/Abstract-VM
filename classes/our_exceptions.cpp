@@ -26,4 +26,16 @@ const char*	ex_NoExitInstruction::what() const throw()
 //AssertIsFalse
 //MissingValues
 //UnknownInstruction
+ex_UnknownInstruction::ex_UnknownInstruction()
+{
+	this->error_str = "Unknown instruction < ?? > instruction";
+}
+ex_UnknownInstruction::ex_UnknownInstruction(const std::string & str)
+{
+	this->error_str = "Unknown instruction < " + str + " > instruction";
+}
+const char*	ex_UnknownInstruction::what() const throw()
+{
+	return (this->error_str.c_str());
+}
 //BadPopInstruction

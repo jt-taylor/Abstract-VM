@@ -2,7 +2,7 @@ NAME = abstract_vm
 
 FLAGS = -Wall -Wextra -Werror -std=c++11
 
-INCLUDES = -I ./includes
+INCLUDES = -I ./includes/ -I ./lexertk
 
 SRC_FILE += main.cpp \
 				./classes/our_exceptions.cpp

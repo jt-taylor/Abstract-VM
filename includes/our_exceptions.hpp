@@ -84,6 +84,7 @@ class ex_UnknownInstruction: public std::exception
 	public:
 		const char *what() const throw();
 		ex_UnknownInstruction();
+		ex_UnknownInstruction(const std::string &str);
 };
 class ex_BadPopInstruction: public std::exception
 {
