@@ -27,6 +27,11 @@
 
 //peek -------------------------------------------------------------------------
 	template<class T>
+	std::string const & Operand<T>::toString(void) const
+	{
+		return (this->peek());
+	}
+	template<class T>
 	std::string Operand<T>::peek(void)
 	{
 		return (this->value);
@@ -46,7 +51,6 @@ int		Operand<int16_t>::getPrecision(void) const
 template<>
 eOperandType Operand<int16_t>::getType(void) const
 {return eint_16t;}
-template <class T>
 
 template<>
 int		Operand<int32_t>::getPrecision(void) const
@@ -78,9 +82,9 @@ void		over_under_flow_check(T a, T b, int mode)
 	if (mode == 1)
 	{
 		T sum = a + b;
-		if ((a < 0) || (b < 0))
+		if ((a < 0) || (b < 0)) {
 			if (sum > a)
-				throw ex_Underflow();
+				throw ex_Underflow(); }
 		else
 			if (sum < a)
 				throw ex_Overflow();
@@ -88,9 +92,9 @@ void		over_under_flow_check(T a, T b, int mode)
 	else if (mode == 2)
 	{
 		T prod = a * b;
-		if ((a < 0) ^ (b < 0))
+		if ((a < 0) ^ (b < 0)) {
 			if (prod > a)
-				throw ex_Underflow();
+				throw ex_Underflow(); }
 		else if (prod < a)
 			throw ex_Overflow();
 	}
@@ -107,7 +111,7 @@ IOperand const * Operand<T>::operator + (IOperand const & ref) const
 	//because this is a template we cast to the largest option ie double
 	try {
 		T n1 = static_cast<T>(stod(this->value));
-		T n2 = static_cast<T>(stod(ref.peek()));
+		T n2 = static_cast<T>(stod(ref.toString()));
 		over_under_flow_check(n1, n2, 1);
 		//OperandFactory * factory = OperandFactory();
 		//IOperand const * ret_val = factory->createOperand(this->getType), std::to_string(static_cast<T>(stod(this->value)));

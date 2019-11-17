@@ -18,6 +18,10 @@ class Operand:public IOperand
 	Operand(std::string & ref);
 	~Operand();
 
+	int		getPrecision(void) const;
+	eOperandType	getType(void) const;
+	std::string const & toString(void) const;
+
 	IOperand const * operator + (IOperand const & ref) const;
 	IOperand const * operator - (IOperand const & ref) const;
 	IOperand const * operator / (IOperand const & ref) const;
