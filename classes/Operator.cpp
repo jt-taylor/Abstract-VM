@@ -2,31 +2,31 @@
 #include "Operator.hpp"
 
 	template<class T>
-	Operator<T>::Operand(){
+	Operand<T>::Operand(){
 		this->value = std::to_string(static_cast<T>(0));
 	}
 	template<class T>
-	Operator<T>::Operand(Operand<T> const & ref){
+	Operand<T>::Operand(Operand<T> const & ref){
 		*this = ref;
 	}
 	template<class T>
-	Operator<T>::Operand(std::string & ref){
+	Operand<T>::Operand(std::string & ref){
 		this->value = ref;
 	}
 	template<class T>
-	Operator<T>::Operand(T val){
+	Operand<T>::Operand(T val){
 		this->value = std::to_string(val);
 	}
 	template<class T>
-	Operand & Operator<T>::operator=(Operand const & ref ){
+	Operand<T> & Operand<T>::operator=(Operand<T> const & ref ){
 		this->value = ref.peek();
 	}
 	template<class T>
-	Operator<T>::~Operand(){
+	Operand<T>::~Operand(){
 	}
 
 //peek -------------------------------------------------------------------------
-	template<T>
+	template<class T>
 	std::string Operand<T>::peek(void)
 	{
 		return (this->value);
@@ -35,39 +35,39 @@
 //		enum eOperandType {int_8t, int_16t, int_32t, float, double };
 template<>
 int		Operand<int8_t>::getPrecision(void) const
-{return (eint8_t);}
+{return (eint_8t);}
 template<>
 eOperandType Operand<int8_t>::getType(void) const
-{return eint8_t}
+{return eint_8t;}
 
 template<>
 int		Operand<int16_t>::getPrecision(void) const
-{return (eint16_t);}
+{return (eint_16t);}
 template<>
 eOperandType Operand<int16_t>::getType(void) const
-{return eint16_t}
+{return eint_16t;}
 template <class T>
 
 template<>
 int		Operand<int32_t>::getPrecision(void) const
-{return (eint32_t);}
+{return (eint_32t);}
 template<>
 eOperandType Operand<int32_t>::getType(void) const
-{return eint32_t}
+{return eint_32t;}
 
 template<>
 int		Operand<float>::getPrecision(void) const
 {return (efloat);}
 template<>
 eOperandType Operand<float>::getType(void) const
-{return efloat}
+{return efloat;}
 
 template<>
 int		Operand<double>::getPrecision(void) const
 {return (edouble);}
 template<>
 eOperandType Operand<double>::getType(void) const
-{return edouble}
+{return edouble;}
 
 // logical checks --------------------------------------------------------------
 

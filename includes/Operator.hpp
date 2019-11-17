@@ -15,6 +15,7 @@ class Operand:public IOperand
 	Operand(T v);
 	Operand(Operand const & ref);
 	Operand & operator=( Operand const & ref );
+	Operand(std::string & ref);
 	~Operand();
 
 	IOperand const * operator + (IOperand const & ref) const;
@@ -26,5 +27,5 @@ class Operand:public IOperand
 	std::string		peek(void);
 	private:
 	std::string		value;
-}
+};
 #endif

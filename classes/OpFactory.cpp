@@ -25,7 +25,7 @@ IOperand const * OpFactory::createDouble(std::string const & ref) const
 IOperand const * OpFactory::createOperand( eOperandType type, std::string const & ref) const
 {
 	//array of function pointers
-	static IOperand const * (arr[](std::string const & ref)) = {
+	static IOperand const * (arr[5](std::string const & ref)) = {
 				&OpFactory::createInt8,
 				&OpFactory::createInt16,
 				&OpFactory::createInt32,
