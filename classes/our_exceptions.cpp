@@ -7,10 +7,11 @@ ex_FileOpen::ex_FileOpen(std::string const & ref)
 {
 	this->error_str = "Error opening <" + ref + " >";
 }
-const char*	ex_FileOpen::what() const throw()
+const char*	ex_FileOpen::what() const _NOEXCEPT
 {
 	return (this->error_str.c_str());
 }
+ex_FileOpen::~ex_FileOpen() _NOEXCEPT {};
 // NoExitInstruction -----------------------------------------------------------
 ex_NoExitInstruction::ex_NoExitInstruction()
 {
@@ -20,6 +21,7 @@ const char*	ex_NoExitInstruction::what() const throw()
 {
 	return (this->error_str.c_str());
 }
+ex_NoExitInstruction::~ex_NoExitInstruction() _NOEXCEPT {};
 //Overflow
 //Underflow
 //BadByZero
@@ -38,4 +40,5 @@ const char*	ex_UnknownInstruction::what() const throw()
 {
 	return (this->error_str.c_str());
 }
+ex_UnknownInstruction::~ex_UnknownInstruction() _NOEXCEPT {};
 //BadPopInstruction

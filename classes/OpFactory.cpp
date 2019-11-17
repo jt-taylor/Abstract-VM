@@ -1,14 +1,14 @@
 #include "OpFactory.hpp"
 
-OpFactory::Opfactory(){}
-OpFactory::Opfactory(const OpFactory & ref){
+OpFactory::OpFactory(){}
+OpFactory::OpFactory(const OpFactory & ref){
 	static_cast<void>(ref);
 }
-OpFactory & OpFactory::Opfactory(const OpFactory & ref){
+OpFactory & OpFactory::operator = (const OpFactory & ref){
 	static_cast<void>(ref);
 	return (*this);
 }
-OpFactory::~Opfactory(){}
+OpFactory::~OpFactory(){}
 // create with factory method ---------------------------------------------------
 IOperand const * OpFactory::createInt8(std::string const & ref) const
 {return new Operand<int8_t>(ref);}
@@ -25,16 +25,22 @@ IOperand const * OpFactory::createDouble(std::string const & ref) const
 IOperand const * OpFactory::createOperand( eOperandType type, std::string const & ref) const
 {
 	//array of function pointers
-	static (IOperand const *)(* arr[](std::string const & ref) = {
-				&createInt8,
-				&createInt16,
-				&createInt32,
-				&createFloat,
-				&createDouble
+	static IOperand const * (arr[](std::string const & ref)) = {
+				&OpFactory::createInt8,
+				&OpFactory::createInt16,
+				&OpFactory::createInt32,
+				&OpFactory::createFloat,
+				&OpFactory::createDouble
 			};
 	IOperand const * ret = 0;
 	try {
-		arr[type](ref);
+		ret = arr[type](ref);
+	} catch (std::exception & e) {
+	std::cerr << e.what();
+	throw;
+	} catch (...) {
+	std::cerr << "unknow exception in create operand" << std::endl;
+	throw;
 	}
-
+	return ret;
 }

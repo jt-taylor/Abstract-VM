@@ -35,39 +35,39 @@
 //		enum eOperandType {int_8t, int_16t, int_32t, float, double };
 template<>
 int		Operand<int8_t>::getPrecision(void) const
-{return (int8_t);}
+{return (eint8_t);}
 template<>
 eOperandType Operand<int8_t>::getType(void) const
-{return int8_t}
+{return eint8_t}
 
 template<>
 int		Operand<int16_t>::getPrecision(void) const
-{return (int16_t);}
+{return (eint16_t);}
 template<>
 eOperandType Operand<int16_t>::getType(void) const
-{return int16_t}
+{return eint16_t}
 template <class T>
 
 template<>
 int		Operand<int32_t>::getPrecision(void) const
-{return (int32_t);}
+{return (eint32_t);}
 template<>
 eOperandType Operand<int32_t>::getType(void) const
-{return int32_t}
+{return eint32_t}
 
 template<>
 int		Operand<float>::getPrecision(void) const
-{return (float);}
+{return (efloat);}
 template<>
 eOperandType Operand<float>::getType(void) const
-{return float}
+{return efloat}
 
 template<>
 int		Operand<double>::getPrecision(void) const
-{return (double);}
+{return (edouble);}
 template<>
 eOperandType Operand<double>::getType(void) const
-{return double}
+{return edouble}
 
 // logical checks --------------------------------------------------------------
 

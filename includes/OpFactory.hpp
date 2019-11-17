@@ -1,6 +1,7 @@
 #ifndef OPFACTORY_HPP
 # define OPFACTORY_HPP
 # include "IOperand.hpp"
+# include "Operator.hpp"
 
 class OpFactory{
 	public:
@@ -18,5 +19,6 @@ class OpFactory{
 	IOperand const * createInt32( std::string const & value ) const;
 	IOperand const * createFloat( std::string const & value ) const;
 	IOperand const * createDouble( std::string const & value ) const;
-}
+
+};
 #endif
