@@ -4,6 +4,7 @@
 # include "IOperand.hpp"
 # include "our_exceptions.hpp"
 # include <string>
+# include <iostream>
 # include <limits.h>
 
 template <class T>
@@ -16,5 +17,14 @@ class Operand:public IOperand
 	Operand & operator=( Operand const & ref );
 	~Operand();
 
+	IOperand const * operator + (IOperand const & ref) const;
+	IOperand const * operator - (IOperand const & ref) const;
+	IOperand const * operator / (IOperand const & ref) const;
+	IOperand const * operator * (IOperand const & ref) const;
+	IOperand const * operator % (IOperand const & ref) const;
+
+	std::string		peek(void);
+	private:
+	std::string		value;
 }
 #endif
