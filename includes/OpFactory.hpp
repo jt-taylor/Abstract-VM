@@ -15,6 +15,7 @@ class OpFactory{
 	static IOperand const *(OpFactory::*ftable[5])(std::string const &) const;
 
 	//depending on enum use one of these, must use array for enum values
+	private:
 	IOperand const * createInt8( std::string const & value ) const;
 	IOperand const * createInt16( std::string const & value ) const;
 	IOperand const * createInt32( std::string const & value ) const;

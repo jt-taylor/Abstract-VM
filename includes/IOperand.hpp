@@ -8,7 +8,7 @@
 #include <float.h>
 #include <limits.h>
 
-enum eOperandType {eint_8t, eint_16t, eint_32t, efloat, edouble};
+enum eOperandType {eint_8t = 0, eint_16t, eint_32t, efloat, edouble};
 
 class IOperand
 {

@@ -1,6 +1,7 @@
 #include "IOperand.hpp"
 #include "Operator.hpp"
 
+/*
 	template<class T>
 	Operand<T>::Operand(){
 		this->value = std::to_string(static_cast<T>(0));
@@ -16,6 +17,13 @@
 	template<class T>
 	Operand<T>::Operand(std::string const & ref){
 		this->value = ref;
+	}
+	template<class T>
+	Operand<T>::Operand(std::string const & ref, eOperandType n){
+		if (n)
+			;
+		this->value = ref;
+		this->data = static_cast<T>(stod(ref));
 	}
 	template<class T>
 	Operand<T>::Operand(T val){
@@ -78,7 +86,6 @@ eOperandType Operand<double>::getType(void) const
 {return edouble;}
 
 // logical checks --------------------------------------------------------------
-
 //mode == 1 -> add ;; mode == 2 -> mul ;; mode == 0 ->err(?)
 template <class T>
 void		over_under_flow_check(T a, T b, int mode)
@@ -109,10 +116,8 @@ void		over_under_flow_check(T a, T b, int mode)
 template <class T>
 IOperand const * Operand<T>::operator + (IOperand const & ref) const
 {
-	//if num1 has a lower precision then num2 use (num2 op num1) with num2's prec instead
 	if (this->getPrecision() < ref.getPrecision())
 		return (ref + *this);
-	//because this is a template we cast to the largest option ie double
 	try {
 		T n1 = static_cast<T>(stod(this->value));
 		T n2 = static_cast<T>(stod(ref.toString()));
@@ -126,3 +131,4 @@ IOperand const * Operand<T>::operator + (IOperand const & ref) const
 		std::cout << "missing exception in \'+\'" << std::endl;
 	}
 }
+*/

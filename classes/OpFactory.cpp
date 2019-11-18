@@ -11,15 +11,15 @@ OpFactory & OpFactory::operator = (const OpFactory & ref){
 OpFactory::~OpFactory(){}
 // create with factory method ---------------------------------------------------
 IOperand const * OpFactory::createInt8(std::string const & ref) const
-{return new Operand<int8_t>(ref);}
+{return new Operand<int8_t>(ref, eint_8t);}
 IOperand const * OpFactory::createInt16(std::string const & ref) const
-{return new Operand<int16_t>(ref);}
+{return new Operand<int16_t>(ref, eint_16t);}
 IOperand const * OpFactory::createInt32(std::string const & ref) const
-{return new Operand<int32_t>(ref);}
+{return new Operand<int32_t>(ref, eint_32t);}
 IOperand const * OpFactory::createFloat(std::string const & ref) const
-{return new Operand<float>(ref);}
+{return new Operand<float>(ref, efloat);}
 IOperand const * OpFactory::createDouble(std::string const & ref) const
-{return new Operand<double>(ref);}
+{return new Operand<double>(ref, edouble);}
 
 IOperand const * (OpFactory::*(OpFactory::ftable[5]))(std::string const &) const =
 {
