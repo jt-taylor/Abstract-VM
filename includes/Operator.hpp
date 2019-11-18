@@ -77,7 +77,7 @@ class Operand:public IOperand
 	template<class T>
 	std::string const & Operand<T>::toString(void) const
 	{
-		return (this->peek());
+		return (this->value);
 	}
 	template<class T>
 	std::string Operand<T>::peek(void)
@@ -165,6 +165,8 @@ IOperand const * Operand<T>::operator + (IOperand const & ref) const
 		std::cout << e.what();
 	} catch (...) {
 		std::cout << "missing exception in \'+\'" << std::endl;
+		throw;
 	}
+	return (0);
 }
 #endif

@@ -23,7 +23,25 @@ const char*	ex_NoExitInstruction::what() const throw()
 }
 ex_NoExitInstruction::~ex_NoExitInstruction() _NOEXCEPT {};
 //Overflow
+ex_Overflow::ex_Overflow()
+{
+	this->error_str = "Missing exit < ;; > instruction";
+}
+const char*	ex_Overflow::what() const throw()
+{
+	return (this->error_str.c_str());
+}
+ex_Overflow::~ex_Overflow() _NOEXCEPT {};
 //Underflow
+ex_Underflow::ex_Underflow()
+{
+	this->error_str = "Missing exit < ;; > instruction";
+}
+const char*	ex_Underflow::what() const throw()
+{
+	return (this->error_str.c_str());
+}
+ex_Underflow::~ex_Underflow() _NOEXCEPT {};
 //BadByZero
 //AssertIsFalse
 //MissingValues
