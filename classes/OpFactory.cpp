@@ -24,14 +24,17 @@ IOperand const * OpFactory::createDouble(std::string const & ref) const
 // create ----------------------------------------------------------------------
 IOperand const * OpFactory::createOperand( eOperandType type, std::string const & ref) const
 {
-	//array of function pointers
 //	static IOperand const * (* arr[5](std::string const & ref)) = {
-	IOperand const * (*arr[])(std::string const & ref) = {
-				&OpFactory::createInt8,
-				&OpFactory::createInt16,
-				&OpFactory::createInt32,
-				&OpFactory::createFloat,
-				&OpFactory::createDouble
+	static IOperand const * arr[5] = {
+				arr[0] = &OpFactory::createInt8,
+				0,
+				0,
+				0,
+				0
+				//this->createInt16,
+				//this->createInt32,
+				//this->createFloat,
+				//this->createDouble
 			};
 	IOperand const * ret = 0;
 	try {
