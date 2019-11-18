@@ -25,7 +25,8 @@ IOperand const * OpFactory::createDouble(std::string const & ref) const
 IOperand const * OpFactory::createOperand( eOperandType type, std::string const & ref) const
 {
 	//array of function pointers
-	static IOperand const * (arr[5](std::string const & ref)) = {
+//	static IOperand const * (* arr[5](std::string const & ref)) = {
+	IOperand const * (*arr[])(std::string const & ref) = {
 				&OpFactory::createInt8,
 				&OpFactory::createInt16,
 				&OpFactory::createInt32,
@@ -34,6 +35,9 @@ IOperand const * OpFactory::createOperand( eOperandType type, std::string const 
 			};
 	IOperand const * ret = 0;
 	try {
+		if (type >= sizeof(arr))
+			;
+		//	throw out of jumptable index
 		ret = arr[type](ref);
 	} catch (std::exception & e) {
 	std::cerr << e.what();

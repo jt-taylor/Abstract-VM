@@ -16,6 +16,7 @@ class Operand:public IOperand
 	Operand(Operand const & ref);
 	Operand & operator=( Operand const & ref );
 	Operand(std::string & ref);
+	Operand(std::string const & ref);
 	~Operand();
 
 	int		getPrecision(void) const;

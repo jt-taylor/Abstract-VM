@@ -14,6 +14,10 @@
 		this->value = ref;
 	}
 	template<class T>
+	Operand<T>::Operand(std::string const & ref){
+		this->value = ref;
+	}
+	template<class T>
 	Operand<T>::Operand(T val){
 		this->value = std::to_string(val);
 	}
