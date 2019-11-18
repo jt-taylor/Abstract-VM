@@ -21,27 +21,24 @@ IOperand const * OpFactory::createFloat(std::string const & ref) const
 IOperand const * OpFactory::createDouble(std::string const & ref) const
 {return new Operand<double>(ref);}
 
-// create ----------------------------------------------------------------------
-IOperand const * OpFactory::createOperand( eOperandType type, std::string const & ref) const
+IOperand const * (OpFactory::*(OpFactory::ftable[5]))(std::string const &) const =
 {
-//	static IOperand const * (* arr[5](std::string const & ref)) = {
-	static IOperand const * arr[5] = {
-				arr[0] = &OpFactory::createInt8,
-				0,
-				0,
-				0,
-				0
-				//this->createInt16,
-				//this->createInt32,
-				//this->createFloat,
-				//this->createDouble
-			};
+	&OpFactory::createInt8,
+	&OpFactory::createInt16,
+	&OpFactory::createInt32,
+	&OpFactory::createFloat,
+	&OpFactory::createDouble
+};
+
+// create ----------------------------------------------------------------------
+IOperand const * OpFactory::createOperand( eOperandType type, std::string const & ref)
+{
 	IOperand const * ret = 0;
 	try {
-		if (type >= sizeof(arr))
+		if (type >= 5)
 			;
 		//	throw out of jumptable index
-		ret = arr[type](ref);
+		ret = (this->*ftable[type])(ref);
 	} catch (std::exception & e) {
 	std::cerr << e.what();
 	throw;
