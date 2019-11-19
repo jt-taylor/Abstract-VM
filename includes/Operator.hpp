@@ -169,4 +169,28 @@ IOperand const * Operand<T>::operator + (IOperand const & ref) const
 	}
 	return (0);
 }
+template <class T>
+IOperand const * Operand<T>::operator - (IOperand const & ref) const
+{
+	ref.getPrecision();
+	return 0;
+}
+template <class T>
+IOperand const * Operand<T>::operator / (IOperand const & ref) const
+{
+	ref.getPrecision();
+	return 0;
+}
+template <class T>
+IOperand const * Operand<T>::operator * (IOperand const & ref) const
+{
+	ref.getPrecision();
+	return 0;
+}
+template <class T>
+IOperand const * Operand<T>::operator % (IOperand const & ref) const
+{
+	ref.getPrecision();
+	return 0;
+}
 #endif
