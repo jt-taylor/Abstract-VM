@@ -11,7 +11,8 @@ static void	read_from_cin_to_vector(std::vector<std::string> & v)
 	while (std::getline(std::cin, tmp))
 		v.push_back(tmp);
 	auto t = v.end();
-	if (t->compare(0, 2, ";;") != 0)
+	//if (t->compare(0, 2, ";;") == 0)
+	if (t->find(std::string(";;"),0) != std::string::npos)
 		throw (ex_NoExitInstruction());
 }
 
