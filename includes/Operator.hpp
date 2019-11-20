@@ -149,6 +149,9 @@ void		over_under_flow_check(T a, T b, int mode)
 }
 
 // Operators -------------------------------------------------------------------
+// these are all close to identicle so maybe i should have templated them
+// but writing this terrible comment took longer than making the functions
+// so (?)
 template <class T>
 IOperand const * Operand<T>::operator + (IOperand const & ref) const
 {
@@ -158,11 +161,14 @@ IOperand const * Operand<T>::operator + (IOperand const & ref) const
 		T n1 = static_cast<T>(stod(this->value));
 		T n2 = static_cast<T>(stod(ref.toString()));
 		over_under_flow_check(n1, n2, 1);
-		//OperandFactory * factory = OperandFactory();
-		//IOperand const * ret_val = factory->createOperand(this->getType), std::to_string(static_cast<T>(stod(this->value)));
-		//return ret_val;
+		// i really should move this to a global so we don't remake the factory
+		// class each time
+		OperandFactory * factory = OperandFactory();
+		IOperand const * ret_val = factory->createOperand(this->getType , std::to_string(static_cast<T>(stod(this->value) + stod(ref.toString))));
+		return ret_val;
 	} catch (std::exception & e) {
 		std::cout << e.what();
+		throw;
 	} catch (...) {
 		std::cout << "missing exception in \'+\'" << std::endl;
 		throw;
@@ -172,25 +178,93 @@ IOperand const * Operand<T>::operator + (IOperand const & ref) const
 template <class T>
 IOperand const * Operand<T>::operator - (IOperand const & ref) const
 {
-	ref.getPrecision();
-	return 0;
+	if (this->getPrecision() < ref.getPrecision())
+		return (ref + *this);
+	try {
+		T n1 = static_cast<T>(stod(this->value));
+		T n2 = static_cast<T>(stod(ref.toString()));
+		over_under_flow_check(n1, n2, 1);
+		// i really should move this to a global so we don't remake the factory
+		// class each time
+		OperandFactory * factory = OperandFactory();
+		IOperand const * ret_val = factory->createOperand(this->getType , std::to_string(static_cast<T>(stod(this->value) - stod(ref.toString))));
+		return ret_val;
+	} catch (std::exception & e) {
+		std::cout << e.what();
+		throw;
+	} catch (...) {
+		std::cout << "missing exception in \'+\'" << std::endl;
+		throw;
+	}
+	return (0);
 }
 template <class T>
 IOperand const * Operand<T>::operator / (IOperand const & ref) const
 {
-	ref.getPrecision();
-	return 0;
+	if (this->getPrecision() < ref.getPrecision())
+		return (ref + *this);
+	try {
+		T n1 = static_cast<T>(stod(this->value));
+		T n2 = static_cast<T>(stod(ref.toString()));
+		over_under_flow_check(n1, n2, 1);
+		// i really should move this to a global so we don't remake the factory
+		// class each time
+		OperandFactory * factory = OperandFactory();
+		IOperand const * ret_val = factory->createOperand(this->getType , std::to_string(static_cast<T>(stod(this->value) / stod(ref.toString))));
+		return ret_val;
+	} catch (std::exception & e) {
+		std::cout << e.what();
+		throw;
+	} catch (...) {
+		std::cout << "missing exception in \'+\'" << std::endl;
+		throw;
+	}
+	return (0);
 }
 template <class T>
 IOperand const * Operand<T>::operator * (IOperand const & ref) const
 {
-	ref.getPrecision();
-	return 0;
+	if (this->getPrecision() < ref.getPrecision())
+		return (ref + *this);
+	try {
+		T n1 = static_cast<T>(stod(this->value));
+		T n2 = static_cast<T>(stod(ref.toString()));
+		over_under_flow_check(n1, n2, 1);
+		// i really should move this to a global so we don't remake the factory
+		// class each time
+		OperandFactory * factory = OperandFactory();
+		IOperand const * ret_val = factory->createOperand(this->getType , std::to_string(static_cast<T>(stod(this->value) * stod(ref.toString))));
+		return ret_val;
+	} catch (std::exception & e) {
+		std::cout << e.what();
+		throw;
+	} catch (...) {
+		std::cout << "missing exception in \'+\'" << std::endl;
+		throw;
+	}
+	return (0);
 }
 template <class T>
 IOperand const * Operand<T>::operator % (IOperand const & ref) const
 {
-	ref.getPrecision();
-	return 0;
+	if (this->getPrecision() < ref.getPrecision())
+		return (ref + *this);
+	try {
+		T n1 = static_cast<T>(stod(this->value));
+		T n2 = static_cast<T>(stod(ref.toString()));
+		over_under_flow_check(n1, n2, 1);
+		// i really should move this to a global so we don't remake the factory
+		// class each time
+		OperandFactory * factory = OperandFactory();
+		IOperand const * ret_val = factory->createOperand(this->getType , std::to_string(static_cast<T>(stod(this->value) % stod(ref.toString))));
+		return ret_val;
+	} catch (std::exception & e) {
+		std::cout << e.what();
+		throw;
+	} catch (...) {
+		std::cout << "missing exception in \'+\'" << std::endl;
+		throw;
+	}
+	return (0);
 }
 #endif
