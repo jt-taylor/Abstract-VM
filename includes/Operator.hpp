@@ -1,3 +1,5 @@
+//this was moved to OpFactory.hpp to remove a circular dependecy
+/*
 #ifndef OPERATOR_HPP
 # define OPERATOR_HPP
 # include "OpFactory.hpp"
@@ -163,8 +165,8 @@ IOperand const * Operand<T>::operator + (IOperand const & ref) const
 		over_under_flow_check(n1, n2, 1);
 		// i really should move this to a global so we don't remake the factory
 		// class each time
-		OperandFactory * factory = OperandFactory();
-		IOperand const * ret_val = factory->createOperand(this->getType , std::to_string(static_cast<T>(stod(this->value) + stod(ref.toString))));
+		OpFactory * factory = OpFactory();
+		IOperand const * ret_val = factory->createOperand(this->getType , std::to_string(static_cast<T>(stod(this->value) + stod(ref.toString()))));
 		return ret_val;
 	} catch (std::exception & e) {
 		std::cout << e.what();
@@ -186,8 +188,8 @@ IOperand const * Operand<T>::operator - (IOperand const & ref) const
 		over_under_flow_check(n1, n2, 1);
 		// i really should move this to a global so we don't remake the factory
 		// class each time
-		OperandFactory * factory = OperandFactory();
-		IOperand const * ret_val = factory->createOperand(this->getType , std::to_string(static_cast<T>(stod(this->value) - stod(ref.toString))));
+		OpFactory * factory = OpFactory();
+		IOperand const * ret_val = factory->createOperand(this->getType , std::to_string(static_cast<T>(stod(this->value) - stod(ref.toString()))));
 		return ret_val;
 	} catch (std::exception & e) {
 		std::cout << e.what();
@@ -209,8 +211,8 @@ IOperand const * Operand<T>::operator / (IOperand const & ref) const
 		over_under_flow_check(n1, n2, 1);
 		// i really should move this to a global so we don't remake the factory
 		// class each time
-		OperandFactory * factory = OperandFactory();
-		IOperand const * ret_val = factory->createOperand(this->getType , std::to_string(static_cast<T>(stod(this->value) / stod(ref.toString))));
+		OpFactory * factory = OpFactory();
+		IOperand const * ret_val = factory->createOperand(this->getType , std::to_string(static_cast<T>(stod(this->value) / stod(ref.toString()))));
 		return ret_val;
 	} catch (std::exception & e) {
 		std::cout << e.what();
@@ -232,8 +234,8 @@ IOperand const * Operand<T>::operator * (IOperand const & ref) const
 		over_under_flow_check(n1, n2, 1);
 		// i really should move this to a global so we don't remake the factory
 		// class each time
-		OperandFactory * factory = OperandFactory();
-		IOperand const * ret_val = factory->createOperand(this->getType , std::to_string(static_cast<T>(stod(this->value) * stod(ref.toString))));
+		OpFactory * factory = OpFactory();
+		IOperand const * ret_val = factory->createOperand(this->getType , std::to_string(static_cast<T>(stod(this->value) * stod(ref.toString()))));
 		return ret_val;
 	} catch (std::exception & e) {
 		std::cout << e.what();
@@ -255,8 +257,8 @@ IOperand const * Operand<T>::operator % (IOperand const & ref) const
 		over_under_flow_check(n1, n2, 1);
 		// i really should move this to a global so we don't remake the factory
 		// class each time
-		OperandFactory * factory = OperandFactory();
-		IOperand const * ret_val = factory->createOperand(this->getType , std::to_string(static_cast<T>(stod(this->value) % stod(ref.toString))));
+		OpFactory * factory = OpFactory();
+		IOperand const * ret_val = factory->createOperand(this->getType , std::to_string(static_cast<T>(stod(this->value) % stod(ref.toString()))));
 		return ret_val;
 	} catch (std::exception & e) {
 		std::cout << e.what();
@@ -268,3 +270,4 @@ IOperand const * Operand<T>::operator % (IOperand const & ref) const
 	return (0);
 }
 #endif
+*/
