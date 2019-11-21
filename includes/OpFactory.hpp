@@ -187,8 +187,6 @@ IOperand const * Operand<T>::operator + (IOperand const & ref) const
 		T n1 = static_cast<T>(stod(this->value));
 		T n2 = static_cast<T>(stod(ref.toString()));
 		over_under_flow_check(n1, n2, 1);
-		// i really should move this to a global so we don't remake the factory
-		// class each time
 		OpFactory factory = OpFactory();
 		IOperand const * ret_val = factory.createOperand(this->getType() , std::to_string(static_cast<T>(stod(this->value) + stod(ref.toString()))));
 		return ret_val;
@@ -210,8 +208,6 @@ IOperand const * Operand<T>::operator - (IOperand const & ref) const
 		T n1 = static_cast<T>(stod(this->value));
 		T n2 = static_cast<T>(stod(ref.toString()));
 		over_under_flow_check(n1, n2, 1);
-		// i really should move this to a global so we don't remake the factory
-		// class each time
 		OpFactory factory = OpFactory();
 		IOperand const * ret_val = factory.createOperand(this->getType() , std::to_string(static_cast<T>(stod(this->value) - stod(ref.toString()))));
 		return ret_val;
@@ -233,8 +229,6 @@ IOperand const * Operand<T>::operator / (IOperand const & ref) const
 		T n1 = static_cast<T>(stod(this->value));
 		T n2 = static_cast<T>(stod(ref.toString()));
 		over_under_flow_check(n1, n2, 1);
-		// i really should move this to a global so we don't remake the factory
-		// class each time
 		OpFactory factory = OpFactory();
 		IOperand const * ret_val = factory.createOperand(this->getType() , std::to_string(static_cast<T>(stod(this->value) / stod(ref.toString()))));
 		return ret_val;
@@ -256,8 +250,6 @@ IOperand const * Operand<T>::operator * (IOperand const & ref) const
 		T n1 = static_cast<T>(stod(this->value));
 		T n2 = static_cast<T>(stod(ref.toString()));
 		over_under_flow_check(n1, n2, 1);
-		// i really should move this to a global so we don't remake the factory
-		// class each time
 		OpFactory factory = OpFactory();
 		IOperand const * ret_val = factory.createOperand(this->getType() , std::to_string(static_cast<T>(stod(this->value) * stod(ref.toString()))));
 		return ret_val;
@@ -279,8 +271,6 @@ IOperand const * Operand<T>::operator % (IOperand const & ref) const
 		T n1 = static_cast<T>(stod(this->value));
 		T n2 = static_cast<T>(stod(ref.toString()));
 		over_under_flow_check(n1, n2, 1);
-		// i really should move this to a global so we don't remake the factory
-		// class each time
 		OpFactory factory = OpFactory();
 		IOperand const * ret_val = factory.createOperand(this->getType() , std::to_string(static_cast<T>((std::stoll(this->value)) % (std::stoll(ref.toString())))));
 		return ret_val;
