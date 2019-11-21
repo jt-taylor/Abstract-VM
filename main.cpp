@@ -4,6 +4,8 @@
 #include <vector>
 #include "lexertk.hpp"
 #include "our_exceptions.hpp"
+#include "IOperand.hpp"
+
 
 static void	read_from_cin_to_vector(std::vector<std::string> & v)
 {
@@ -12,7 +14,9 @@ static void	read_from_cin_to_vector(std::vector<std::string> & v)
 		v.push_back(tmp);
 	auto t = v.end();
 	//if (t->compare(0, 2, ";;") == 0)
-	if (t->find(std::string(";;"),0) != std::string::npos)
+	if (v.empty())
+		throw (ex_NoExitInstruction());
+	if (t->find(std::string(";;"), 0) != std::string::npos)
 		throw (ex_NoExitInstruction());
 }
 
@@ -23,7 +27,6 @@ static void	read_file_in_to_vector(std::string file_path, std::vector<std::strin
 
 	if (!in)
 		throw (ex_FileOpen(file_path));
-
 	while (std::getline(in,tmp))
 	{
 		if (tmp.size() > 0)
@@ -33,10 +36,25 @@ static void	read_file_in_to_vector(std::string file_path, std::vector<std::strin
 	return ;
 }
 
+/*
+ * command validation ; takes the tokens and checks if the syntax is correct
+ */
+
+static void	check_command_tokens(
+
+/*
+ * the obvious choice for which container to use is stack well because
+ * the vm is running a "stack" , but that would make printing the stack contents
+ * more annoying to do than just using the default underlying container
+ * ie deque
+ */
+
 static int	do_the_vm(std::vector<std::string> & v)
 {
 	lexertk::generator	gen;
+	
 	auto iter = v.begin();
+	std::deque<IOperand>	cont;
 	while (iter != v.end())
 	{
 		std::cout << *iter << std::endl;
@@ -44,12 +62,6 @@ static int	do_the_vm(std::vector<std::string> & v)
 		{
 			std::cout << "Lexer parser error" << std::endl;
 			throw (ex_UnknownInstruction(*iter));
-		}
-		else
-		{
-			//lexertk::helper::dump(gen);
-			//std::cout << "\n";
-			;
 		}
 		if (iter->at(0) == ';')
 		{
