@@ -111,39 +111,40 @@ class Operand:public IOperand
 	}
 // getPrecision && getType -----------------------------------------------------
 //		enum eOperandType {int_8t, int_16t, int_32t, float, double };
+//		these are inlined so we don't get duplicate symbol errors when we compile
 template<>
-int		Operand<int8_t>::getPrecision(void) const
+inline int		Operand<int8_t>::getPrecision(void) const
 {return (eint_8t);}
 template<>
-eOperandType Operand<int8_t>::getType(void) const
+inline eOperandType Operand<int8_t>::getType(void) const
 {return eint_8t;}
 
 template<>
-int		Operand<int16_t>::getPrecision(void) const
+inline int		Operand<int16_t>::getPrecision(void) const
 {return (eint_16t);}
 template<>
-eOperandType Operand<int16_t>::getType(void) const
+inline eOperandType Operand<int16_t>::getType(void) const
 {return eint_16t;}
 
 template<>
-int		Operand<int32_t>::getPrecision(void) const
+inline int		Operand<int32_t>::getPrecision(void) const
 {return (eint_32t);}
 template<>
-eOperandType Operand<int32_t>::getType(void) const
+inline eOperandType Operand<int32_t>::getType(void) const
 {return eint_32t;}
 
 template<>
-int		Operand<float>::getPrecision(void) const
+inline int		Operand<float>::getPrecision(void) const
 {return (efloat);}
 template<>
-eOperandType Operand<float>::getType(void) const
+inline eOperandType Operand<float>::getType(void) const
 {return efloat;}
 
 template<>
-int		Operand<double>::getPrecision(void) const
+inline int		Operand<double>::getPrecision(void) const
 {return (edouble);}
 template<>
-eOperandType Operand<double>::getType(void) const
+inline eOperandType Operand<double>::getType(void) const
 {return edouble;}
 
 // logical checks --------------------------------------------------------------
