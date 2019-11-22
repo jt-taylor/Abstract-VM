@@ -91,10 +91,6 @@ ex_BadPopInstruction::ex_BadPopInstruction()
 {
 	this->error_str = "Pop on empty stack instruction";
 }
-ex_BadPopInstruction::ex_BadPopInstruction(const std::string & str)
-{
-	this->error_str = "Pop on empty stack instruction";
-}
 const char*	ex_BadPopInstruction::what() const throw()
 {
 	return (this->error_str.c_str());
