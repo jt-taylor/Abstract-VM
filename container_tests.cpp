@@ -27,6 +27,9 @@ int		main(void)
 	for (auto i = q.cbegin();i != q.cend();i++)
 		std::cout << (*i)->toString() << std::endl;
 	std::cout << "------------------------------" << std::endl;
+	n1 = fac.createOperand(eint_8t, "33");
+	std::cout << n1->toString() << std::endl;
+	std::cout << "------------------------------" << std::endl;
 	q.pop_front();
 	q.pop_front();
 	q.pop_front();
