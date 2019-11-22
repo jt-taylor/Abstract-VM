@@ -8,6 +8,7 @@
 
 int		main(void)
 {
+	try {
 	std::deque<const IOperand *>		q;
 
 	OpFactory fac;
@@ -25,4 +26,28 @@ int		main(void)
 	std::cout << "Iterate throgh stack" << std::endl;
 	for (auto i = q.cbegin();i != q.cend();i++)
 		std::cout << (*i)->toString() << std::endl;
+	std::cout << "------------------------------" << std::endl;
+	q.pop_front();
+	q.pop_front();
+	q.pop_front();
+	const IOperand * dblz = fac.createOperand(edouble, "1.0");
+	const IOperand * dbla = fac.createOperand(edouble, "0.0");
+	q.push_front(dbla);
+	n1 = q.front();
+	q.push_front(dblz);
+	n2 = q.front();
+	std::cout << "testing div by zero" << std::endl;
+	ret = *n1 / *n2;
+	ret = *n1 - *n2;
+	q.push_front(ret);
+	for (auto i = q.cbegin();i != q.cend();i++)
+		std::cout << (*i)->toString() << std::endl;
+	std::cout << "------------------------------" << std::endl;
+	q.push_front(ret);
+	} catch (std::exception & e) {
+		std::cout << "\nhere" << std::endl;
+		std::cout << e.what() << std::endl;
+	} catch (...) {
+		std::cout << "Unknow exception raised" << std::endl;
+	}
 }

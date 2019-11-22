@@ -43,6 +43,15 @@ const char*	ex_Underflow::what() const throw()
 }
 ex_Underflow::~ex_Underflow() _NOEXCEPT {};
 //BadByZero
+ex_BadByZero::ex_BadByZero()
+{
+	this->error_str = "( / || % ) by zero";
+}
+const char*	ex_BadByZero::what() const throw()
+{
+	return (this->error_str.c_str());
+}
+ex_BadByZero::~ex_BadByZero() _NOEXCEPT {};
 //AssertIsFalse
 //MissingValues
 //UnknownInstruction
