@@ -233,6 +233,7 @@ IOperand const * Operand<T>::operator / (IOperand const & ref) const
 	try {
 		T n1 = static_cast<T>(stod(this->value));
 		T n2 = static_cast<T>(stod(ref.toString()));
+		std::cout << n1 << "= n1: " << n2 << " =n2\n";
 		if (n1 == 0 || n2 == 0)
 			throw ex_BadByZero();
 		over_under_flow_check(n1, n2, 1);
@@ -240,8 +241,6 @@ IOperand const * Operand<T>::operator / (IOperand const & ref) const
 		IOperand const * ret_val = factory.createOperand(this->getType() , std::to_string(static_cast<T>(stod(this->value) / stod(ref.toString()))));
 		return ret_val;
 	} catch (std::exception & e) {
-		//
-		std::cout << "in template function '/'" << std::endl;
 		std::cout << e.what();
 		throw;
 	} catch (...) {
