@@ -7,6 +7,7 @@
 # include <string>
 # include <iostream>
 # include <limits.h>
+# include <cstdlib> // for strtod
 
 class OpFactory{
 	public:
@@ -83,6 +84,10 @@ class Operand:public IOperand
 	Operand<T>::Operand(std::string const & ref, eOperandType n){
 		if (n)
 			;
+		if (std::stod(ref.c_str()) > std::numeric_limits<T>::max())
+			throw (ex_Overflow());
+		if (std::stod(ref.c_str()) < std::numeric_limits<T>::lowest())
+			throw (ex_Underflow());
 		this->value = ref;
 		this->data = static_cast<T>(stod(ref));
 	}

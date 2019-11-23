@@ -7,6 +7,12 @@
 #include <stdlib.h> //for atoi
 
 //should i throw these into their own class >?
+//so because it's isgnificantly faster to yank and paste the function base
+//than writing them from scratch we have to silence the unused variable functions
+//you can use the lagacy c style (void)var cast , or not give the variable a name in the
+//prototype like my_func(int /*no name*/, ...)
+//or c++17 has [[maybe unused]]
+//but i went with the gcc atribute option --> __attribute__((unused))var
 
 // push pop dump ---------------------------------------------------------------
 void		stack_interface_command__push(std::deque<const IOperand *> & q, eOperandType type, OpFactory & fac, std::string value)

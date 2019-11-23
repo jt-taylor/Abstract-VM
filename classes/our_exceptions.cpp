@@ -25,7 +25,7 @@ ex_NoExitInstruction::~ex_NoExitInstruction() _NOEXCEPT {};
 //Overflow
 ex_Overflow::ex_Overflow()
 {
-	this->error_str = "Missing exit < ;; > instruction";
+	this->error_str = "Overflow exception raised";
 }
 const char*	ex_Overflow::what() const throw()
 {
@@ -35,7 +35,7 @@ ex_Overflow::~ex_Overflow() _NOEXCEPT {};
 //Underflow
 ex_Underflow::ex_Underflow()
 {
-	this->error_str = "Missing exit < ;; > instruction";
+	this->error_str = "Underflow exception raised";
 }
 const char*	ex_Underflow::what() const throw()
 {
