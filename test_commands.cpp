@@ -136,6 +136,30 @@ int		main(void)
 		std::cout << "unknow exception" << std::endl;
 	}
 	try {
+	// overflow
+	std::cout << "\n\n-------------\n Overflow\n";
+	std::deque<const IOperand *>		q;
+	OpFactory fac;
+
+	stack_interface_command__push(q, eint_8t, fac, std::string("129"));
+	} catch (std::exception & e) {
+		std::cout << e.what() << std::endl;
+	} catch (...) {
+		std::cout << "unknow exception" << std::endl;
+	}
+	try {
+	// underflow
+	std::cout << "\n\n-------------\n Underflow\n";
+	std::deque<const IOperand *>		q;
+	OpFactory fac;
+
+	stack_interface_command__push(q, eint_8t, fac, std::string("-129"));
+	} catch (std::exception & e) {
+		std::cout << e.what() << std::endl;
+	} catch (...) {
+		std::cout << "unknow exception" << std::endl;
+	}
+	try {
 	// missing values except
 	std::cout << "\n\n-------------\n Missing values except\n";
 	std::deque<const IOperand *>		q;

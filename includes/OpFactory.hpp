@@ -233,7 +233,6 @@ IOperand const * Operand<T>::operator / (IOperand const & ref) const
 	try {
 		T n1 = static_cast<T>(stod(this->value));
 		T n2 = static_cast<T>(stod(ref.toString()));
-		std::cout << n1 << "= n1: " << n2 << " =n2\n";
 		if (n1 == 0 || n2 == 0)
 			throw ex_BadByZero();
 		over_under_flow_check(n1, n2, 1);
