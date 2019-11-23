@@ -3,7 +3,8 @@
 #include "our_exceptions.hpp"
 #include <string>
 #include <iostream>
-#include <deque>
+#include <deque> // for std::deque<>
+#include <stdlib.h> //for atoi
 
 //should i throw these into their own class >?
 
@@ -72,11 +73,12 @@ void		stack_interface_command__assert(std::deque<const IOperand *> & q, eOperand
 	}
 }
 
-void		stack_interface_command__print(std::deque<const IOperand *> & q, __attribute__((unused)) eOperandType type, __attribute__((unused)) OpFactory & fac, std::string value)
+void		stack_interface_command__print(std::deque<const IOperand *> & q, __attribute__((unused)) eOperandType type, __attribute__((unused)) OpFactory & fac, __attribute__((unused))std::string value)
 {
 	try {
-		stack_interface_command__assert(q, eint_8t, fac, value);
-		std::cout << static_cast<char>(((q.front())->toString()).at(0));
+		if ((q.front())->getType() != type)
+			throw (ex_AssertIsFalse());
+		std::cout << static_cast<char>((atoi(((q.front())->toString()).c_str())));
 	} catch (std::exception & e) {
 		std::cout << e.what() << std::endl;
 		throw;
