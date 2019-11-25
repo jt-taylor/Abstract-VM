@@ -113,13 +113,16 @@ static int	do_the_vm(std::vector<std::string> & v)
 							else
 								stack_interface_command__push(q, static_cast<eOperandType>(j),
 										fac, std::string(t.value));
+							break;
 						}
 				//pop
 				case 1: {
-					stack_interface_command__pop(q, eint_8t, fac, std::string());}
+					stack_interface_command__pop(q, eint_8t, fac, std::string());
+						break;}
 				// dump
 				case 2: {
-					stack_interface_command__dump(q, eint_8t, fac, std::string());}
+					stack_interface_command__dump(q, eint_8t, fac, std::string());
+						break;}
 				// assert
 				case 3: {
 							t = gen[1];
@@ -134,28 +137,35 @@ static int	do_the_vm(std::vector<std::string> & v)
 							else
 								stack_interface_command__assert(q, static_cast<eOperandType>(j),
 										fac, std::string(t.value));
-						}
+						break;}
 				// add
 				case 4: {
-					stack_interface_command__add(q, eint_8t, fac, std::string());}
+					stack_interface_command__add(q, eint_8t, fac, std::string());
+						break;}
 				// sub
 				case 5: {
-					stack_interface_command__sub(q, eint_8t, fac, std::string());}
+					stack_interface_command__sub(q, eint_8t, fac, std::string());
+						break;}
 				// mul
 				case 6: {
-					stack_interface_command__mul(q, eint_8t, fac, std::string());}
+					stack_interface_command__mul(q, eint_8t, fac, std::string());
+						break;}
 				// div
 				case 7: {
-					stack_interface_command__div(q, eint_8t, fac, std::string());}
+					stack_interface_command__div(q, eint_8t, fac, std::string());
+						break;}
 				// mod
 				case 8: {
-					stack_interface_command__mod(q, eint_8t, fac, std::string());}
+					stack_interface_command__mod(q, eint_8t, fac, std::string());
+						break;}
 				// print
 				case 9: {
-					stack_interface_command__print(q, eint_8t, fac, std::string());}
+					stack_interface_command__print(q, eint_8t, fac, std::string());
+						break;}
 				// exit
 				case 10: {
-					stack_interface_command__exit(q, eint_8t, fac, std::string());}
+					stack_interface_command__exit(q, eint_8t, fac, std::string());
+						break;}
 			}
 			if (i > 11)
 				throw (ex_UnknownInstruction());

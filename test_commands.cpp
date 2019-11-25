@@ -39,6 +39,21 @@ int		main(void)
 		std::cout << "unknow exception" << std::endl;
 	}
 	try {
+	std::deque<const IOperand *>		q;
+	OpFactory fac;
+
+	//more testing for dump
+	std::cout << "\n\n-------------\n Dump\n";
+	stack_interface_command__push(q, eint_8t, fac, std::string("42"));
+	std::cout << std::endl;
+	stack_interface_command__dump(q, eint_8t, fac, std::string());
+	std::cout << std::endl;
+	} catch (std::exception & e) {
+		std::cout << e.what() << std::endl;
+	} catch (...) {
+		std::cout << "unknow exception" << std::endl;
+	}
+	try {
 	//testing precision stuff
 	std::cout << "\n\n-------------\n Precision\n";
 	std::deque<const IOperand *>		q;
