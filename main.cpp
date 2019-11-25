@@ -36,41 +36,32 @@ static void	read_file_in_to_vector(std::string file_path, std::vector<std::strin
 	return ;
 }
 
-/*
- * command validation ; takes the tokens and checks if the syntax is correct
- */
-
-static void	check_command_tokens(
-
-/*
- * the obvious choice for which container to use is stack well because
- * the vm is running a "stack" , but that would make printing the stack contents
- * more annoying to do than just using the default underlying container
- * ie deque
- */
-
 static int	do_the_vm(std::vector<std::string> & v)
 {
+	int				found_exit = 0;
 	lexertk::generator	gen;
-	
 	auto iter = v.begin();
 	std::deque<IOperand>	cont;
 	while (iter != v.end())
 	{
-		std::cout << *iter << std::endl;
+		std::cout << "Input string < " <<  *iter << " >" + std::endl;
 		if (!gen.process(iter->c_str()))
 		{
 			std::cout << "Lexer parser error" << std::endl;
 			throw (ex_UnknownInstruction(*iter));
 		}
-		if (iter->at(0) == ';')
+		if (iter->at(0) == ';' && !found_exit)
 		{
 			line_number++;
 			iter++;
 			continue ;
 		}
-		if (0)//check valid command *i
-			break;
+		else
+		{
+			lexertk::token t = gen[0];
+			if (strcmp(
+		}
+
 		line_number++;
 		iter++;
 	}

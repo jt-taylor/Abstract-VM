@@ -44,6 +44,8 @@ int		main(void)
 	std::deque<const IOperand *>		q;
 	OpFactory fac;
 
+	const IOperand * j = fac.createOperand(edouble, std::string("42.071111111111111111"));
+	std::cout << j->getPrecision() << std::endl;
 	stack_interface_command__push(q, eint_16t, fac, std::string("512"));
 	stack_interface_command__push(q, eint_32t, fac, std::string("512"));
 	stack_interface_command__push(q, efloat, fac, std::string("512"));
