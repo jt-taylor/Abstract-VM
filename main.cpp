@@ -4,7 +4,9 @@
 #include <vector>
 #include "lexertk.hpp"
 #include "our_exceptions.hpp"
+#include "command_prototypes.hpp"
 #include "IOperand.hpp"
+#include "OpFactory.hpp"
 
 
 static void	read_from_cin_to_vector(std::vector<std::string> & v)
@@ -61,13 +63,14 @@ static int	do_the_vm(std::vector<std::string> & v)
 		"int32",
 		"float",
 		"double"
-	}
+	};
 	int				found_exit = 0;
 	int				i = 0;
 	int				j = 0;
 	lexertk::generator	gen;
 	auto iter = v.begin();
-	std::deque<IOperand>	cont;
+	std::deque<const IOperand *>	q;
+	OpFactory fac;
 
 	// parse line by line
 	while (iter != v.end())
@@ -90,7 +93,7 @@ static int	do_the_vm(std::vector<std::string> & v)
 			lexertk::token t = gen[0];
 			for (i = 0; i < 12;i++)
 			{
-				if (arr_comp[i].compare(t[0]) == 0)
+				if (arr_comp[i].compare(t.value) == 0)
 					break;
 			}
 			switch (i)
@@ -99,14 +102,15 @@ static int	do_the_vm(std::vector<std::string> & v)
 				case 1: {
 							for (j = 0; j < 5;j++)
 							{
-								if (arr_comp[i].compare(t[0]) == 0)
+								if (arr_comp[i].compare(t.to_str(t.type)) == 0)
 									break;
 							}
+							t = gen[3];
 							if (j > 4)
 								throw (ex_UnknownInstruction());
 							else
 								stack_interface_command__push(q, static_cast<eOperandType>(j),
-										fac, std::string(t[3]));
+										fac, std::string(t.value));
 						}
 				//pop
 				case 2: {
@@ -118,14 +122,15 @@ static int	do_the_vm(std::vector<std::string> & v)
 				case 4: {
 							for (j = 0; j < 5;j++)
 							{
-								if (arr_comp[i].compare(t[0]) == 0)
+								if (arr_comp[i].compare(t.value) == 0)
 									break;
 							}
+							t = gen[3];
 							if (j > 4)
 								throw (ex_UnknownInstruction());
 							else
 								stack_interface_command__assert(q, static_cast<eOperandType>(j),
-										fac, std::string(t[3]));
+										fac, std::string(t.value));
 						}
 				// add
 				case 5: {
