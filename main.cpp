@@ -38,18 +38,47 @@ static void	read_file_in_to_vector(std::string file_path, std::vector<std::strin
 
 static int	do_the_vm(std::vector<std::string> & v)
 {
+	// command list
+	std::string			arr_comp[] =
+	{
+		"push",
+		"pop",
+		"dump",
+		"assert",
+		"add",
+		"sub",
+		"mul",
+		"div",
+		"mod",
+		"print",
+		"exit"
+	};
+	// type list
+	std::string		arr_type[] =
+	{
+		"int8",
+		"int16",
+		"int32",
+		"float",
+		"double"
+	}
 	int				found_exit = 0;
+	int				i = 0;
+	int				j = 0;
 	lexertk::generator	gen;
 	auto iter = v.begin();
 	std::deque<IOperand>	cont;
+
+	// parse line by line
 	while (iter != v.end())
 	{
-		std::cout << "Input string < " <<  *iter << " >" + std::endl;
+		//std::cout << "Input string < " <<  *iter << " >" + std::endl;
 		if (!gen.process(iter->c_str()))
 		{
 			std::cout << "Lexer parser error" << std::endl;
 			throw (ex_UnknownInstruction(*iter));
 		}
+		//ignore comments
 		if (iter->at(0) == ';' && !found_exit)
 		{
 			line_number++;
@@ -59,9 +88,70 @@ static int	do_the_vm(std::vector<std::string> & v)
 		else
 		{
 			lexertk::token t = gen[0];
-			if (strcmp(
+			for (i = 0; i < 12;i++)
+			{
+				if (arr_comp[i].compare(t[0]) == 0)
+					break;
+			}
+			switch (i)
+			{
+				// instruction push  -> check data type and value
+				case 1: {
+							for (j = 0; j < 5;j++)
+							{
+								if (arr_comp[i].compare(t[0]) == 0)
+									break;
+							}
+							if (j > 4)
+								throw (ex_UnknownInstruction());
+							else
+								stack_interface_command__push(q, static_cast<eOperandType>(j),
+										fac, std::string(t[3]));
+						}
+				//pop
+				case 2: {
+					stack_interface_command__pop(q, eint_8t, fac, std::string());}
+				// dump
+				case 3: {
+					stack_interface_command__dump(q, eint_8t, fac, std::string());}
+				// assert
+				case 4: {
+							for (j = 0; j < 5;j++)
+							{
+								if (arr_comp[i].compare(t[0]) == 0)
+									break;
+							}
+							if (j > 4)
+								throw (ex_UnknownInstruction());
+							else
+								stack_interface_command__assert(q, static_cast<eOperandType>(j),
+										fac, std::string(t[3]));
+						}
+				// add
+				case 5: {
+					stack_interface_command__add(q, eint_8t, fac, std::string());}
+				// sub
+				case 6: {
+					stack_interface_command__sub(q, eint_8t, fac, std::string());}
+				// mul
+				case 7: {
+					stack_interface_command__mul(q, eint_8t, fac, std::string());}
+				// div
+				case 8: {
+					stack_interface_command__div(q, eint_8t, fac, std::string());}
+				// mod
+				case 9: {
+					stack_interface_command__mod(q, eint_8t, fac, std::string());}
+				// print
+				case 10: {
+					stack_interface_command__print(q, eint_8t, fac, std::string());}
+				// exit
+				case 11: {
+					stack_interface_command__exit(q, eint_8t, fac, std::string());}
+			}
+			if (i > 11)
+				throw (ex_UnknownInstruction());
 		}
-
 		line_number++;
 		iter++;
 	}
