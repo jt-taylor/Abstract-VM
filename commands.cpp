@@ -66,6 +66,8 @@ void		stack_interface_command__assert(std::deque<const IOperand *> & q, eOperand
 {
 	try {
 	//	const IOperand * tmp = fac.createOperand(type, value);
+		if (q.empty())
+			throw (ex_AssertIsFalse());
 		if ((q.front())->getType() != type)
 			throw (ex_AssertIsFalse());
 		if (value.compare((q.front())->toString()) != 0)
@@ -82,6 +84,8 @@ void		stack_interface_command__assert(std::deque<const IOperand *> & q, eOperand
 void		stack_interface_command__print(std::deque<const IOperand *> & q, __attribute__((unused)) eOperandType type, __attribute__((unused)) OpFactory & fac, __attribute__((unused))std::string value)
 {
 	try {
+		if (q.empty())
+			throw (ex_AssertIsFalse());
 		if ((q.front())->getType() != type)
 			throw (ex_AssertIsFalse());
 		std::cout << static_cast<char>((atoi(((q.front())->toString()).c_str())));

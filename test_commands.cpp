@@ -47,9 +47,9 @@ int		main(void)
 	const IOperand * j = fac.createOperand(edouble, std::string("42.071111111111111111"));
 	std::cout << j->getPrecision() << std::endl;
 	stack_interface_command__push(q, eint_16t, fac, std::string("512"));
-	stack_interface_command__push(q, eint_32t, fac, std::string("512"));
-	stack_interface_command__push(q, efloat, fac, std::string("512"));
-	stack_interface_command__push(q, edouble, fac, std::string("512"));
+	stack_interface_command__push(q, eint_32t, fac, std::string("513"));
+	stack_interface_command__push(q, efloat, fac, std::string("24"));
+	stack_interface_command__push(q, edouble, fac, std::string("62"));
 	stack_interface_command__dump(q, eint_8t, fac, std::string());
 	stack_interface_command__add(q, eint_8t, fac, std::string());
 	stack_interface_command__add(q, eint_8t, fac, std::string());
@@ -72,9 +72,9 @@ int		main(void)
 	OpFactory fac;
 
 	stack_interface_command__push(q, eint_16t, fac, std::string("512"));
-	stack_interface_command__push(q, eint_32t, fac, std::string("512"));
-	stack_interface_command__push(q, efloat, fac, std::string("512"));
-	stack_interface_command__push(q, edouble, fac, std::string("512"));
+	stack_interface_command__push(q, eint_32t, fac, std::string("256"));
+	stack_interface_command__push(q, efloat, fac, std::string("128"));
+	stack_interface_command__push(q, edouble, fac, std::string("64"));
 	std::cout << "before ops" << std::endl;
 	stack_interface_command__dump(q, eint_8t, fac, std::string());
 	stack_interface_command__mul(q, eint_8t, fac, std::string());

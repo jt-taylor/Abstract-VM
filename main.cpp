@@ -64,6 +64,7 @@ static int	do_the_vm(std::vector<std::string> & v)
 		"float",
 		"double"
 	};
+	try {
 	int				found_exit = 0;
 	int				i = 0;
 	int				j = 0;
@@ -99,10 +100,11 @@ static int	do_the_vm(std::vector<std::string> & v)
 			switch (i)
 			{
 				// instruction push  -> check data type and value
-				case 1: {
+				case 0: {
+							t = gen[1];
 							for (j = 0; j < 5;j++)
 							{
-								if (arr_comp[i].compare(t.to_str(t.type)) == 0)
+								if (arr_type[j].compare(t.value) == 0)
 									break;
 							}
 							t = gen[3];
@@ -113,16 +115,17 @@ static int	do_the_vm(std::vector<std::string> & v)
 										fac, std::string(t.value));
 						}
 				//pop
-				case 2: {
+				case 1: {
 					stack_interface_command__pop(q, eint_8t, fac, std::string());}
 				// dump
-				case 3: {
+				case 2: {
 					stack_interface_command__dump(q, eint_8t, fac, std::string());}
 				// assert
-				case 4: {
+				case 3: {
+							t = gen[1];
 							for (j = 0; j < 5;j++)
 							{
-								if (arr_comp[i].compare(t.value) == 0)
+								if (arr_type[j].compare(t.value) == 0)
 									break;
 							}
 							t = gen[3];
@@ -133,25 +136,25 @@ static int	do_the_vm(std::vector<std::string> & v)
 										fac, std::string(t.value));
 						}
 				// add
-				case 5: {
+				case 4: {
 					stack_interface_command__add(q, eint_8t, fac, std::string());}
 				// sub
-				case 6: {
+				case 5: {
 					stack_interface_command__sub(q, eint_8t, fac, std::string());}
 				// mul
-				case 7: {
+				case 6: {
 					stack_interface_command__mul(q, eint_8t, fac, std::string());}
 				// div
-				case 8: {
+				case 7: {
 					stack_interface_command__div(q, eint_8t, fac, std::string());}
 				// mod
-				case 9: {
+				case 8: {
 					stack_interface_command__mod(q, eint_8t, fac, std::string());}
 				// print
-				case 10: {
+				case 9: {
 					stack_interface_command__print(q, eint_8t, fac, std::string());}
 				// exit
-				case 11: {
+				case 10: {
 					stack_interface_command__exit(q, eint_8t, fac, std::string());}
 			}
 			if (i > 11)
@@ -159,6 +162,10 @@ static int	do_the_vm(std::vector<std::string> & v)
 		}
 		line_number++;
 		iter++;
+	} } catch (std::exception & e) {
+		std::cout << e.what() << std::endl;
+	} catch (...) {
+		std::cout << "Unknown exception" << std::endl;
 	}
 	//if (strcmp(iter->c_str(),";;") != 0)
 	//	throw (ex_NoExitInstruction());
