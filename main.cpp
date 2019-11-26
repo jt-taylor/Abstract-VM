@@ -83,6 +83,11 @@ static int	do_the_vm(std::vector<std::string> & v)
 			throw (ex_UnknownInstruction(*iter));
 		}
 		//ignore comments
+		if (iter->empty() == 1)
+		{
+			std::cout << "Empty instructions not supported" << std::endl;
+			throw (ex_UnknownInstruction());
+		}
 		if (iter->at(0) == ';' && !found_exit)
 		{
 			line_number++;
@@ -164,11 +169,15 @@ static int	do_the_vm(std::vector<std::string> & v)
 						break;}
 				// exit
 				case 10: {
-					stack_interface_command__exit(q, eint_8t, fac, std::string());
-						break;}
+					iter++;
+					if (iter->compare(";;") == 0)
+						stack_interface_command__exit(q, eint_8t, fac, std::string());
+					else
+						throw (ex_NoExitInstruction());
+					break;}
+				default:
+					throw (ex_UnknownInstruction());
 			}
-			if (i > 11)
-				throw (ex_UnknownInstruction());
 		}
 		line_number++;
 		iter++;

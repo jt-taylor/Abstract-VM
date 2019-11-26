@@ -5,7 +5,9 @@ FLAGS = -Wall -Wextra -Werror -std=c++11
 INCLUDES = -I ./includes/ -I ./lexertk
 
 SRC_FILE += main.cpp \
-				./classes/our_exceptions.cpp
+				classes/our_exceptions.cpp \
+				commands.cpp \
+				classes/OpFactory.cpp
 .PHONY = all clean fclean re
 
 all : $(NAME)
