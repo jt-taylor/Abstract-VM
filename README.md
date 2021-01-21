@@ -16,7 +16,7 @@ but for a simple explanation
 - div
 - mod
 - print ; assert that the head of stack is int_8 and prints it char value
-- exit ; if not present throw an errorThe goal of this Project is to make a very basic asembly language interpreter
+- exit ; if not present throw an error
 
 #### Example
 ```  
